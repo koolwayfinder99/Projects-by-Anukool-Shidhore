@@ -1,0 +1,79 @@
+# AI Object Detection Pipeline - Requirements
+# Production-grade dependencies for YOLOv8-based object detection with TensorRT optimization
+
+# Core Deep Learning Framework (CUDA 11.8 enabled)
+torch==2.1.2+cu118
+torchvision==0.16.2+cu118
+torchaudio==2.1.2+cu118
+
+# YOLO Detection Framework
+ultralytics==8.1.0
+
+# Computer Vision Operations
+opencv-python==4.8.1.78
+
+# ONNX Runtime with GPU Support
+onnxruntime-gpu==1.17.0
+
+# TensorRT for GPU-optimized inference
+tensorrt==8.6.1
+
+# Numerical Computing
+numpy==1.24.3
+scipy==1.11.4
+
+# Data Processing and Analysis
+pandas==2.1.3
+
+# Monitoring and Visualization
+matplotlib==3.8.2
+seaborn==0.13.0
+tensorboard==2.15.1
+
+# Image Processing Utilities
+Pillow==10.1.0
+scikit-image==0.22.0
+
+# Logging and Configuration
+pyyaml==6.0.1
+
+# Progress Bars
+tqdm==4.66.1
+
+# Type Hints and Validation
+pydantic==2.5.0
+
+# Development Tools (optional, uncomment for development)
+# jupyter==1.0.0
+# jupyterlab==4.0.9
+# ipython==8.18.1
+# pytest==7.4.3
+# black==23.12.0
+# flake8==6.1.0
+# mypy==1.7.1
+
+# Performance Profiling (optional)
+# py-spy==0.3.14
+
+# Documentation (optional)
+# sphinx==7.2.6
+
+# NVIDIA CUDA Toolkit (system-level requirement, not pip installable)
+# CUDA 11.8: https://developer.nvidia.com/cuda-11-8-0-download-archive
+# cuDNN 8.0+: https://developer.nvidia.com/cudnn
+
+# Notes:
+# 1. Install PyTorch with CUDA 11.8 support:
+#    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+#
+# 2. TensorRT requires CUDA 11.8 and cuDNN 8.0+
+#    Download from: https://developer.nvidia.com/tensorrt
+#
+# 3. Verify GPU availability:
+#    python -c "import torch; print(torch.cuda.is_available())"
+#
+# 4. For development with Jupyter:
+#    pip install jupyter jupyterlab ipython
+#
+# 5. For testing:
+#    pip install pytest pytest-cov

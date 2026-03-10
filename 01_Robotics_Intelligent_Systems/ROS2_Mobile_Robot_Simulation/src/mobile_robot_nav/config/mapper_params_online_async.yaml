@@ -1,14 +1,51 @@
 slam_toolbox:
   ros__parameters:
+    # ROS Topics
     odom_frame: odom
     map_frame: map
     base_frame: base_link
     scan_topic: /scan
-    mode: mapping
-    debug_logging: false
+    
+    # Advanced Parameters
+    use_map_saver: true
+    map_start_pose: [0.0, 0.0, 0.0]
+    map_start_at_dock: false
+    
+    # Processor Configuration
+    processor_type: occupancy_grid_processor
+    update_rate: 10
     transform_publish_period: 0.02
-    map_update_interval: 5.0
+    
+    # Toolbox Configuration
+    mode: localization  # Can be: mapping, localization, or lifelong
+    
+    # Scan settings
+    max_beams: 500
+    max_range: 25.0
+    minimum_range: 0.12
+    use_scan_matching: true
+    
+    # Matching parameters
+    correlation_variance_multiplier: 1.0
+    loop_search_maximum_distance: 3.0
+    do_loop_closing: true
+    
+    # Solver settings
+    use_scan_barycenter: true
+    minimum_travel_heading: 0.5
+    minimum_travel_distance: 0.5
+    
+    # Resolution
     resolution: 0.05
-    max_laser_range: 20.0
-    minimum_time_interval: 0.5
-    transform_timeout: 0.2
+    
+    # Serialization
+    serialization_format: 1  # 1 for new format
+    map_file_name: map
+    
+    # Diagnostics
+    publish_tf: true
+    tf_buffer_duration: 30.0
+    transform_timeout: 0.5
+    stack_size_to_use: 40000000  # 40MB stack for large maps
+    enable_interactive_mode: false
+    paused_new_measurements: false

@@ -1,0 +1,90 @@
+# Arm 6-DOF Robot Specifications
+# Configuration file for physical and control parameters
+
+arm:
+  name: "6-DOF Industrial Robotic Arm"
+  manufacturer: "Digital Twin System - RIU"
+  dof: 6
+  
+  # Link specifications
+  links:
+    base_mass: 5.0  # kg
+    link_mass: 1.5   # kg
+    tool_mass: 0.5   # kg
+    
+  # Joint specifications
+  joints:
+    joint_1:  # Waist
+      type: "revolute"
+      axis: "z"
+      effort_limit: 150  # N·m
+      velocity_limit: 3.14  # rad/s
+      damping: 0.1
+      friction: 0.1
+      
+    joint_2:  # Shoulder
+      type: "revolute"
+      axis: "y"
+      effort_limit: 150
+      velocity_limit: 3.14
+      damping: 0.1
+      friction: 0.1
+      
+    joint_3:  # Upper Arm
+      type: "revolute"
+      axis: "y"
+      effort_limit: 120
+      velocity_limit: 3.14
+      damping: 0.1
+      friction: 0.1
+      
+    joint_4:  # Wrist 1
+      type: "revolute"
+      axis: "y"
+      effort_limit: 100
+      velocity_limit: 4.71
+      damping: 0.1
+      friction: 0.1
+      
+    joint_5:  # Wrist 2
+      type: "revolute"
+      axis: "z"
+      effort_limit: 100
+      velocity_limit: 4.71
+      damping: 0.1
+      friction: 0.1
+      
+    joint_6:  # Wrist 3
+      type: "revolute"
+      axis: "y"
+      effort_limit: 80
+      velocity_limit: 4.71
+      damping: 0.1
+      friction: 0.1
+
+# Inertial properties
+inertia:
+  base:
+    ixx: 0.05
+    iyy: 0.05
+    izz: 0.05
+    
+  link:
+    scale: 0.01  # Mass scaling factor for inertia calculation
+
+# Simulation parameters
+gazebo:
+  physics_engine: "ode"
+  time_step: 0.001  # seconds
+  gravity: [0, 0, -9.81]  # m/s^2
+
+# Control parameters
+control:
+  joint_state_publisher:
+    update_rate: 100  # Hz
+    qos_depth: 1
+    qos_reliability: "BEST_EFFORT"
+    
+  controller:
+    type: "effort_controllers/JointTrajectoryController"
+    update_rate: 50  # Hz

@@ -1,0 +1,9 @@
+numpy>=1.21.0
+scikit-learn>=1.0.0
+rclpy>=0.12.0
+sensor-msgs>=0.0.0
+geometry-msgs>=0.0.0
+gazebo-ros>=1.0.0
+robot-state-publisher>=2.0.0
+joint-state-publisher>=2.0.0
+std-msgs>=0.0.0

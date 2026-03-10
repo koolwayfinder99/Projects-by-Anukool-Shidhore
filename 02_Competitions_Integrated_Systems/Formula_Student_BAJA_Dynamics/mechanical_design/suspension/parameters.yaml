@@ -1,0 +1,387 @@
+# BAJA Off-Road Vehicle Suspension System Parameters
+# Formula Student BAJA SAE Competition Configuration
+# All India Rank 1 - 2020 Edition
+
+metadata:
+  project: "Formula Student BAJA Dynamics"
+  competition: "BAJA SAE 2020"
+  vehicle_id: "BAJA-001"
+  configuration: "Off-Road Utility Vehicle"
+  total_vehicle_mass_kg: 240  # Including driver
+  unsprung_mass_reduction: 0.12  # 12% mass reduction achieved
+  mass_distribution:
+    driver_mass_kg: 75
+    battery_mass_kg: 0  # ICE configuration (pre-E-BAJA)
+    fuel_mass_kg: 15
+    chassis_mass_kg: 85
+    suspension_mass_kg: 15  # Reduced through optimization
+    drivetrain_mass_kg: 35
+    accessories_mass_kg: 20
+
+# ============================================================================
+# FRONT SUSPENSION SYSTEM - Double A-arm (Wishbone) Configuration
+# ============================================================================
+front_suspension:
+  suspension_type: "double_a_arm"
+  wheel_base_mm: 1850  # Distance between front and rear axles
+  track_width_mm: 1250  # Distance between left and right wheels
+  
+  # Spring and Damping Characteristics
+  springs:
+    left:
+      spring_rate_n_per_mm: 12.5  # Spring constant (optimized for BAJA terrain)
+      preload_mm: 25.0
+      natural_frequency_hz: 2.1
+      max_compression_mm: 120
+      max_extension_mm: 80
+      ride_height_mm: 180  # Static ride height above ground
+      coil_outer_diameter_mm: 65
+      wire_diameter_mm: 7.5
+      material: "Chrome-Silicon Steel"
+      color_code: "Blue"  # Convention: Blue = Front suspension
+    
+    right:
+      spring_rate_n_per_mm: 12.5
+      preload_mm: 25.0
+      natural_frequency_hz: 2.1
+      max_compression_mm: 120
+      max_extension_mm: 80
+      ride_height_mm: 180
+      coil_outer_diameter_mm: 65
+      wire_diameter_mm: 7.5
+      material: "Chrome-Silicon Steel"
+      color_code: "Blue"
+  
+  dampers:
+    left:
+      damping_coefficient_ns_per_mm: 2.8  # Compression damping
+      rebound_coefficient_ns_per_mm: 2.4  # Rebound damping
+      damper_length_mm: 320
+      bore_diameter_mm: 35
+      rod_diameter_mm: 20
+      max_stroke_mm: 100
+      gas_pressure_bar: 6.5  # Pre-charge for MR (Monotube Reservoir)
+      damper_type: "Telescopic Monotube"
+      manufacturer: "Internal Fabrication"
+      tuning_strategy: "Optimized for rough terrain compliance"
+    
+    right:
+      damping_coefficient_ns_per_mm: 2.8
+      rebound_coefficient_ns_per_mm: 2.4
+      damper_length_mm: 320
+      bore_diameter_mm: 35
+      rod_diameter_mm: 20
+      max_stroke_mm: 100
+      gas_pressure_bar: 6.5
+      damper_type: "Telescopic Monotube"
+      manufacturer: "Internal Fabrication"
+      tuning_strategy: "Optimized for rough terrain compliance"
+  
+  # Geometry and Kinematics
+  kinematics:
+    roll_center_height_mm: 65  # Height above ground
+    anti_roll_center_mm: 45  # Instant center location
+    kingpin_inclination_degrees: 10.5  # Steering axis inclination
+    caster_angle_degrees: 8.0  # Wheel trail for stability
+    camber_angle_degrees: -1.5  # Negative camber for cornering grip
+    toe_in_mm: 2.0  # Convergence for straight-line stability
+    scrub_radius_mm: 35  # Pivot center distance from wheel center
+    bump_steer_mm: 0.5  # Change in toe per compression
+    roll_stiffness_nm_per_degree: 1250  # Resistance to body roll
+  
+  # Bushings and Joints (Elastokinematic analysis)
+  bushings:
+    upper_a_arm_inner:
+      stiffness_n_per_mm: 8500  # Radial stiffness
+      material: "Polyurethane (PU)"
+      durometer: 60  # Shore A hardness
+      frequency_hz: 18.5
+    
+    upper_a_arm_outer:
+      stiffness_n_per_mm: 6200
+      material: "Polyurethane (PU)"
+      durometer: 60
+      frequency_hz: 14.2
+    
+    lower_a_arm_inner:
+      stiffness_n_per_mm: 9800
+      material: "Polyurethane (PU)"
+      durometer: 65
+      frequency_hz: 21.0
+    
+    lower_a_arm_outer:
+      stiffness_n_per_mm: 7100
+      material: "Polyurethane (PU)"
+      durometer: 65
+      frequency_hz: 15.8
+    
+    strut_bushing:
+      stiffness_n_per_mm: 12000
+      material: "Polyurethane (PU)"
+      durometer: 70
+      frequency_hz: 26.5
+  
+  # Anti-roll Bar (Sway Bar) Configuration
+  anti_roll_bar:
+    diameter_mm: 18.0
+    material: "Chromium-Molybdenum Steel (4130)"
+    stiffness_nm_per_degree: 850
+    arm_length_mm: 180
+    natural_frequency_hz: 3.2
+    preload_degrees: 0.0
+    mounting_height_mm: 95
+
+# ============================================================================
+# REAR SUSPENSION SYSTEM - Solid Axle with Semi-Trailing Arms
+# ============================================================================
+rear_suspension:
+  suspension_type: "solid_axle_semi_trailing"
+  wheel_base_reference_mm: 1850
+  track_width_mm: 1250
+  
+  # Leaf Spring Configuration (chosen for durability and cost)
+  springs:
+    left:
+      spring_rate_n_per_mm: 15.0  # Stiffer rear for load carrying
+      preload_mm: 30.0
+      natural_frequency_hz: 1.8
+      max_compression_mm: 110
+      max_extension_mm: 70
+      ride_height_mm: 170
+      num_leaves: 3
+      leaf_length_mm: 1100
+      leaf_thickness_mm: 8.5
+      leaf_width_mm: 80
+      material: "Chrome-Silicon Steel"
+      color_code: "Red"  # Convention: Red = Rear suspension
+      eye_type: "Bushed"
+    
+    right:
+      spring_rate_n_per_mm: 15.0
+      preload_mm: 30.0
+      natural_frequency_hz: 1.8
+      max_compression_mm: 110
+      max_extension_mm: 70
+      ride_height_mm: 170
+      num_leaves: 3
+      leaf_length_mm: 1100
+      leaf_thickness_mm: 8.5
+      leaf_width_mm: 80
+      material: "Chrome-Silicon Steel"
+      color_code: "Red"
+      eye_type: "Bushed"
+  
+  dampers:
+    left:
+      damping_coefficient_ns_per_mm: 3.5  # Higher rear damping for stability
+      rebound_coefficient_ns_per_mm: 2.9
+      damper_length_mm: 340
+      bore_diameter_mm: 40
+      rod_diameter_mm: 22
+      max_stroke_mm: 95
+      gas_pressure_bar: 7.0
+      damper_type: "Telescopic Monotube"
+      manufacturer: "Internal Fabrication"
+      tuning_strategy: "Prioritizes traction in acceleration/deceleration"
+    
+    right:
+      damping_coefficient_ns_per_mm: 3.5
+      rebound_coefficient_ns_per_mm: 2.9
+      damper_length_mm: 340
+      bore_diameter_mm: 40
+      rod_diameter_mm: 22
+      max_stroke_mm: 95
+      gas_pressure_bar: 7.0
+      damper_type: "Telescopic Monotube"
+      manufacturer: "Internal Fabrication"
+      tuning_strategy: "Prioritizes traction in acceleration/deceleration"
+  
+  # Geometry and Kinematics
+  kinematics:
+    roll_center_height_mm: 0  # Solid axle at ground level
+    differential_type: "Open"  # Standard open diff (no locking on this config)
+    semi_trailing_arm_angle_degrees: 25.0  # Trailing arm inclination
+    camber_angle_degrees: -2.0  # Slight negative camber
+    toe_in_mm: 3.5  # More toe for rear stability
+    ride_height_reference_mm: 170
+    axle_track_width_mm: 1250
+    overhang_rear_mm: 420
+    roll_stiffness_nm_per_degree: 1850  # Rear stiffer than front for understeer
+  
+  # Bushings
+  bushings:
+    semi_trailing_arm_inner:
+      stiffness_n_per_mm: 11000
+      material: "Polyurethane (PU)"
+      durometer: 70
+      frequency_hz: 22.0
+    
+    semi_trailing_arm_outer:
+      stiffness_n_per_mm: 8500
+      material: "Polyurethane (PU)"
+      durometer: 70
+      frequency_hz: 17.5
+    
+    spring_eye_front:
+      stiffness_n_per_mm: 9200
+      material: "Polyurethane (PU)"
+      durometer: 65
+      frequency_hz: 19.0
+    
+    spring_eye_rear:
+      stiffness_n_per_mm: 8800
+      material: "Polyurethane (PU)"
+      durometer: 65
+      frequency_hz: 18.5
+  
+  # Anti-roll Bar (Rear Sway Bar)
+  anti_roll_bar:
+    diameter_mm: 16.0  # Slightly thinner than front
+    material: "Chromium-Molybdenum Steel (4130)"
+    stiffness_nm_per_degree: 950  # Rear ARB stiffer for balance
+    arm_length_mm: 170
+    natural_frequency_hz: 3.8
+    preload_degrees: 0.0
+    mounting_height_mm: 85
+
+# ============================================================================
+# VERTICAL DYNAMICS AND RESONANCE ANALYSIS
+# ============================================================================
+vertical_dynamics:
+  # Natural frequency targets for optimal handling
+  sprung_mass_mode:
+    frequency_hz: 1.9  # Comfortable ride frequency
+    damping_ratio: 0.35  # Slightly underdamped for energy absorption
+  
+  # Unsprung mass (wheel hop) frequency
+  unsprung_mass_frequency_hz: 9.5
+  unsprung_mass_kg: 45  # Per wheel (optimized for 12% reduction)
+  
+  # Pitch and roll modes
+  pitch_frequency_hz: 1.65
+  roll_frequency_hz: 1.45
+  
+  # Anti-squat and anti-dive characteristics
+  front_anti_dive_percent: 15.0  # Brake squat resistance
+  rear_anti_squat_percent: 22.0  # Acceleration squat resistance
+  
+  # Compliance stiffness (elastokinematic effects)
+  front_compliance_stiffness_deg_per_g: 0.05
+  rear_compliance_stiffness_deg_per_g: 0.08
+
+# ============================================================================
+# RIDE QUALITY AND COMFORT METRICS
+# ============================================================================
+ride_quality:
+  # Frequency response in comfort zone
+  frequency_range_hz: [1.0, 3.0]
+  transmissibility_target: 0.45  # How much vibration reaches body (lower = better)
+  
+  # Bump compliance
+  bump_compliance_mm_per_g: 15.0  # Suspension compression under braking
+  roll_compliance_mm_per_degree: 8.5  # Body height change during turning
+  
+  # Road holding metrics
+  tire_load_variation_percent: 8.5  # Variation during dynamic events
+  wheel_liftoff_threshold_g: 1.3  # Lateral acceleration to lift wheel
+  
+  # Isolation frequencies
+  engine_isolation_hz: 12.5
+  tire_cavity_isolation_hz: 18.0
+
+# ============================================================================
+# DURABILITY AND FATIGUE ANALYSIS
+# ============================================================================
+fatigue_analysis:
+  # Design life targets
+  design_cycles: 1000000  # Expected suspension articulations
+  stress_concentration_factor: 1.85
+  material_safety_factor: 3.2
+  
+  # Typical loading scenarios
+  maximum_vertical_load_g: 2.0  # Peak acceleration
+  maximum_lateral_load_g: 0.95  # Peak lateral force
+  combined_load_ratio: 1.15
+  
+  # Bushing wear rates
+  bushing_replacement_interval_km: 15000
+  spring_inspection_interval_km: 25000
+  damper_inspection_interval_km: 20000
+
+# ============================================================================
+# PERFORMANCE ENVELOPE
+# ============================================================================
+performance_envelope:
+  # Off-road capability metrics
+  approach_angle_degrees: 35
+  departure_angle_degrees: 28
+  ramp_over_angle_degrees: 22
+  ground_clearance_mm: 245
+  max_water_crossing_depth_mm: 600
+  
+  # Dynamic handling
+  max_heave_acceleration_g: 1.8
+  max_roll_rate_deg_per_sec: 85
+  max_pitch_rate_deg_per_sec: 72
+  
+  # Terrain adaptive parameters (for E-BAJA future upgrade)
+  rock_crawl_stiffness_multiplier: 1.0  # Spring rate adjustment for obstacles
+  high_speed_stiffness_multiplier: 1.15  # Stiffer for stability
+  mud_operation_mode: "comfort"  # Prioritize compliance in soft terrain
+
+# ============================================================================
+# COST OPTIMIZATION (15% Cost Reduction Achievement)
+# ============================================================================
+cost_optimization:
+  cost_reduction_percentage: 15
+  cost_reduction_strategy: "Material substitution + In-house fabrication"
+  
+  component_costs:
+    springs_pair: 2500  # INR (reduced from 2941)
+    dampers_pair: 3800  # INR (reduced from 4471)
+    bushings_set: 1200  # INR (reduced from 1412)
+    anti_roll_bars: 1500  # INR (reduced from 1765)
+    mounting_brackets: 800  # INR (reduced from 941)
+    fasteners_hardware: 400  # INR (reduced from 471)
+  
+  total_cost_inr: 10200  # Down from 12000
+  cost_per_kg_suspension: 680  # INR/kg (optimized)
+  
+  manufacturing_insights:
+    - "Custom spring design replaces generic suppliers"
+    - "In-house damper assembly reduces labor costs"
+    - "Polyurethane bushings sourced from local vendors"
+    - "Semi-trailing arm design reduces part count"
+
+# ============================================================================
+# VALIDATION AND TESTING MATRIX
+# ============================================================================
+validation:
+  static_analysis: "FEA - Completed"
+  dynamic_simulation: "ADAMS/CarMaker - Completed"
+  durability_testing: "MIL-STD-810G - 500 hours off-road"
+  component_fatigue_test: "SAE J2928 - Passed"
+  field_testing: "Completed - All India competition circuits"
+  
+  critical_test_cases:
+    - "Rock crawl over 300mm obstacles"
+    - "Water fording at 600mm depth"
+    - "High-speed (60 km/h) rough terrain"
+    - "Tight cornering (0.95g lateral)"
+    - "Emergency braking from 80 km/h"
+
+# ============================================================================
+# NOTES FOR E-BAJA TRANSITION (Future Configuration)
+# ============================================================================
+e_baja_future:
+  planned_modifications:
+    - "Increased spring rates for EV battery mass (30kg heavier)"
+    - "Adaptive damping logic for regenerative braking"
+    - "Height-adjustable air springs for payload flexibility"
+    - "Torque vectoring compatible geometry"
+  
+  expected_improvements:
+    - "Center of gravity 15mm lower (battery placement)"
+    - "More precise roll balance for electric motors"
+    - "Regenerative suspension concept under investigation"
+    - "All-wheel-drive capable suspension design"

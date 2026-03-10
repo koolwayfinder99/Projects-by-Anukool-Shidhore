@@ -1,0 +1,143 @@
+# Extended Kalman Filter (EKF) Sensor Fusion Configuration
+# 
+# This configuration file defines parameters for the perception fusion node
+# implementing multi-modal sensor fusion using LiDAR and Radar data.
+#
+# Author: Silicon Integration Engineer
+# Date: 2025
+# Version: 1.0
+
+perception_fusion_node:
+  ros__parameters:
+    
+    # ========================================================================
+    # SENSOR NOISE PARAMETERS (Standard Deviations)
+    # ========================================================================
+    # These values determine the measurement covariance matrices in the EKF.
+    # Lower values increase trust in the sensor measurement.
+    # Higher values decrease trust (more uncertainty).
+    
+    # LiDAR Parameters
+    # ----------------
+    # LiDAR range measurement noise (meters)
+    # Typical 3D LiDAR range accuracy: 0.02-0.1m
+    # For Velodyne-16: ~0.05m @ 10m range
+    lidar_range_std: 0.05
+    
+    # LiDAR bearing (angular) measurement noise (radians)
+    # Velodyne-16 has ~0.2° angular resolution
+    # 0.01 rad ≈ 0.57°
+    lidar_bearing_std: 0.01
+    
+    # Radar Parameters
+    # ----------------
+    # Radar range measurement noise (meters)
+    # Automotive radar range accuracy: 0.1-0.3m
+    # Using 0.1m for high-grade sensors
+    radar_range_std: 0.1
+    
+    # Radar bearing measurement noise (radians)
+    # Automotive radar azimuth resolution: ~1-4°
+    # Using 0.05 rad ≈ 2.8°
+    radar_bearing_std: 0.05
+    
+    # Radar radial velocity measurement noise (m/s)
+    # Doppler velocity accuracy: ~0.1-0.2 m/s
+    # Conservative estimate for robust fusion
+    radar_velocity_std: 0.1
+    
+    # ========================================================================
+    # PROCESS NOISE PARAMETERS
+    # ========================================================================
+    # These define uncertainty in the motion model.
+    # Process noise accounts for model inaccuracies and unmeasured accelerations.
+    
+    # Process noise scaling factor
+    # Controls magnitude of process noise matrix Q
+    # Larger value → more tolerance for unmodeled dynamics
+    # Range: 0.01 (tight) to 1.0 (loose)
+    # For typical ground robots: 0.1-0.2
+    # For pedestrians/slower motion: 0.01-0.1
+    # For aggressive maneuvers: 0.2-0.5
+    process_noise: 0.15
+    
+    # ========================================================================
+    # COORDINATE FRAME PARAMETERS
+    # ========================================================================
+    # Defines the reference frames for the fusion output
+    
+    # Odometry frame (global/world reference)
+    # This is the fixed reference frame for the environment
+    odom_frame: "odom"
+    
+    # Base frame (robot/sensor platform reference)
+    # This frame moves with the robot/vehicle
+    base_frame: "base_link"
+    
+    # ========================================================================
+    # OCCUPANCY GRID PARAMETERS
+    # ========================================================================
+    # Parameters for 3D spatial occupancy grid generation
+    
+    # Grid cell resolution (meters)
+    # Smaller values = higher resolution but more memory/computation
+    # Typical range: 0.05-0.2m for indoor, 0.1-0.5m for outdoor
+    grid_resolution: 0.1
+    
+    # Grid size (meters)
+    # Defines spatial extent of occupancy grid around robot
+    # 20m x 20m centered on robot (±10m in each direction)
+    grid_size: 20.0
+    
+    # Maximum points to retain in cloud buffer
+    # Prevents unbounded memory growth
+    # Keeping 50k points balances accuracy and memory
+    max_cloud_points: 50000
+    
+    # ========================================================================
+    # KALMAN FILTER INITIALIZATION PARAMETERS
+    # ========================================================================
+    # Initial conditions and convergence rates
+    
+    # Initial state covariance (uncertainty)
+    # Set to high values for uncertain initial conditions
+    # Diagonal elements: [x_var, y_var, vx_var, vy_var]
+    initial_covariance: 10.0
+    
+    # Filter update rate (Hz)
+    # Controls prediction step frequency
+    # Typical rates: 10-100 Hz depending on sensor refresh rates
+    update_rate: 20
+    
+    # ========================================================================
+    # OUTLIER REJECTION THRESHOLDS
+    # ========================================================================
+    # Gating parameters for rejecting spurious measurements
+    
+    # Gate threshold (Mahalanobis distance)
+    # Measurements beyond this threshold are rejected
+    # Typical value: 3.0 (99.7% confidence interval for Gaussian)
+    mahalanobis_threshold: 3.0
+    
+    # Minimum range gate (meters)
+    # Measurements closer than this are rejected
+    # Prevents self-generated reflections from bumpers/sensors
+    min_range: 0.1
+    
+    # Maximum range gate (meters)
+    # Measurements farther than this are rejected
+    # Limits sensor range and improves computational efficiency
+    max_range: 100.0
+    
+    # ========================================================================
+    # DEBUG AND LOGGING PARAMETERS
+    # ========================================================================
+    
+    # Enable detailed debug output
+    debug_mode: false
+    
+    # Publish intermediate filter states (for diagnosis)
+    publish_intermediate_states: false
+    
+    # Log convergence metrics
+    log_filter_metrics: false

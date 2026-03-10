@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>perception_fusion</name>
+  <version>1.0.0</version>
+  <description>
+    Advanced multi-modal sensor fusion package for ROS2 Humble.
+    Implements Extended Kalman Filter for fusing LiDAR and Radar data.
+    Provides 3D spatial mapping and robust velocity estimation.
+  </description>
+
+  <!-- Author information -->
+  <maintainer email="anukool@robotics.dev">Anukool Shidhore</maintainer>
+  <author email="anukool@robotics.dev">Anukool Shidhore</author>
+
+  <!-- License -->
+  <license>Apache-2.0</license>
+
+  <!-- URLs -->
+  <url type="website">https://github.com/anukool-shidhore</url>
+  <url type="repository">https://github.com/anukool-shidhore/sensor-fusion</url>
+
+  <!-- Build and runtime dependencies -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Core dependencies -->
+  <depend>rclcpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  
+  <!-- Point Cloud Library integration -->
+  <depend>pcl_ros</depend>
+  <depend>pcl</depend>
+  
+  <!-- Linear algebra library -->
+  <depend>eigen</depend>
+
+  <!-- Build and runtime testing dependencies -->
+  <test_depend>ament_cmake_gtest</test_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <!-- Export information -->
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

@@ -1,0 +1,44 @@
+# GenAI Computer Vision Models - Requirements
+# Python 3.9+ with CUDA 11.8+ support
+
+# PyTorch and Core Deep Learning
+torch==2.1.0
+torchvision==0.16.0
+torchaudio==2.1.0
+
+# Transformers and Pre-trained Models
+transformers==4.35.0
+diffusers==0.21.4
+safetensors==0.4.0
+
+# Image Processing and Computer Vision
+opencv-python==4.8.1.78
+opencv-contrib-python==4.8.1.78
+Pillow==10.1.0
+scikit-image==0.22.0
+imageio==2.33.1
+
+# Visualization and Plotting
+matplotlib==3.8.1
+seaborn==0.13.0
+tensorboard==2.15.1
+
+# Utilities and Data Processing
+numpy==1.24.3
+scipy==1.11.4
+pandas==2.1.1
+tqdm==4.66.1
+pyyaml==6.0.1
+
+# Development and Testing
+pytest==7.4.3
+black==23.11.0
+flake8==6.1.0
+isort==5.12.0
+
+# Optional: Hugging Face utilities
+huggingface-hub==0.19.4
+accelerate==0.25.0
+
+# Optional: Performance optimization
+xformers==0.0.22  # Memory-efficient attention for transformers
